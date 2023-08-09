@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-.container-login {
-  height: '100vh';
-  display: 'flex';
-  flexDirection: 'column';
-  alignItems: 'center';
-  justifyContent: 'center';
+.row-login {
+  height: 100vh;
 }
