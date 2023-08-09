@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -6,18 +6,41 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-export const Login = () => {
+class Login extends React.Component {
 
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(username);
-        console.log(password);
+
+
+    constructor() {
+        super();
+        this.state = {
+            username: "",
+            password: ""
+        };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    return (
+    handleInputChange(event) {
+        event.preventDefault();
+        const target = event.target;
+        this.setState({
+            [target.name]: target.value,
+        });
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state.username);
+        console.log(this.state.password);
+    // add login logic here
+    }
+
+    render(){
+        return (
         <Container style={
             {
                 height: '100vh',
@@ -32,14 +55,14 @@ export const Login = () => {
                     <Card>
                         <Card.Header>Log In</Card.Header>
                         <Card.Body>
-                            <Form>
+                            <Form onSubmit={ this.handleSubmit }>
                                 <Form.Group className="mb-3" controlId="username">
                                     <Form.Label>Username</Form.Label>
-                                    <Form.Control type="text" placeholder="Enter username" />
+                                    <Form.Control type="text" placeholder="Enter username" value={ this.state.username } onChange={ this.handleInputChange }/>
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="password">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" />
+                                    <Form.Control type="password" placeholder="Password" onChange={ this.handleInputChange }/>
                                 </Form.Group>
                                 <Button variant="primary" type="submit">
                                     Submit
@@ -50,5 +73,7 @@ export const Login = () => {
                 </Col>
             </Row>
         </Container>
-    );
+    )}
 }
+
+export default Login;
