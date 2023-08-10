@@ -1,12 +1,10 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../assets/logo.png'
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
@@ -18,33 +16,7 @@ import { faGears } from '@fortawesome/free-solid-svg-icons';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 class Dashboard extends React.Component{
-
-    constructor() {
-        super();
-        this.state = {
-            username: "",
-            password: "",
-            is_authenticated: true,
-            error: false,
-            error_message: "",
-        };
-
-        this.handleLogout = this.handleLogout.bind(this);
-    }
-
-    handleLogout(event) {
-        console.log("Button Click");
-        localStorage.removeItem('token');
-        this.setState({
-            is_authenticated: false,
-        });
-        console.log(this.state.is_authenticated)
-    }
-
     render(){
-        if(!this.state.is_authenticated){
-            return <Navigate replace to="/login" />;
-        }
         return (
             <Container fluid>
                 <Row>
@@ -82,21 +54,7 @@ class Dashboard extends React.Component{
                             </Row>
                         </Container>
                     </Col>
-                    <Col xs={10}>
-                        <Container fluid className="w-100 mt-2">
-                            <Row>
-                                <Col style={{display:'flex', justifyContent:'right'}}>
-                                    Test
-                                </Col>
-                                <Col style={{display:'flex', justifyContent:'right'}}>
-                                    <Button variant="outline-danger" size="sm" onClick={ this.handleLogout } >Log out</Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <hr className="mt-2 mb-1"/>
-                            </Row>
-                        </Container>
-                    </Col>
+                    <Col xs={10} style={{display:'flex', justifyContent:'left'}}>Main here</Col>
                 </Row>
             </Container>
     )}
