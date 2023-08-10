@@ -55,7 +55,6 @@ const Login = () => {
             })
             .then(data => {
                 localStorage.setItem('token', data['token']);
-                // window.location.href = "/dashboard";
                 navigate("/dashboard");
                 setIsAuthenticated(true);
             })
@@ -85,12 +84,12 @@ const Login = () => {
                 <Col className="square border-end row align-items-center" >
                     <Form onSubmit={ handleSubmit } className="px-5">
                         <Form.Group className="mb-3" controlId="username">
-                            <Form.Control name="username" type="text" placeholder="Enter username" value={ username } onChange={(e) => setUsername(e.target.value)} required/>
+                            <Form.Control name="username" type="text" size="sm" placeholder="Enter username" value={ username } onChange={(e) => setUsername(e.target.value)} required/>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="password">
-                            <Form.Control name="password" type="password" placeholder="Password" value={ password } onChange={(e) => setPassword(e.target.value)} required/>
+                            <Form.Control name="password" type="password" size="sm" placeholder="Password" value={ password } onChange={(e) => setPassword(e.target.value)} required/>
                         </Form.Group>
-                        <Button className="w-100" variant="primary" type="submit">
+                        <Button className="w-100" variant="primary" size="sm" type="submit">
                             Submit
                         </Button>
                         <p className="small mt-2">
