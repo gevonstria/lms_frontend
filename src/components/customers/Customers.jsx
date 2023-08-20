@@ -4,11 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
-import logo from '../assets/logo-sm-alphabg.png';
+import logo from '../../assets/logo-sm-alphabg.png';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
@@ -23,8 +25,10 @@ import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 import { faCheckToSlot } from '@fortawesome/free-solid-svg-icons';
 import { faHandHoldingDollar } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
-const Dashboard = () => {
+const Customers = () => {
 
     const navigate = useNavigate();
 
@@ -52,10 +56,10 @@ const Dashboard = () => {
                             <Col>
                                 <h6 className="text-white mt-2">General</h6>
                                 <ListGroup className="p-0">
-                                    <ListGroup.Item className="text-white bg-secondary border-0"><FontAwesomeIcon icon={faGauge} /> Dashboard</ListGroup.Item>
-                                    <ListGroup.Item className="text-white bg-secondary border-0" onClick= { () => navigate("/customers") }>
-                                        <FontAwesomeIcon icon={faUsers} /> Customers
+                                    <ListGroup.Item className="text-white bg-secondary border-0" onClick={ () => navigate("/dashboard") }>
+                                        <FontAwesomeIcon icon={faGauge} /> Dashboard
                                     </ListGroup.Item>
+                                    <ListGroup.Item className="text-white bg-secondary border-0"><FontAwesomeIcon icon={faUsers} /> Customers</ListGroup.Item>
                                     <ListGroup.Item className="text-white bg-secondary border-0"><FontAwesomeIcon icon={faMoneyBillTransfer} /> Loans</ListGroup.Item>
                                 </ListGroup>
                                 <h6 className="text-white mt-2">Configurations</h6>
@@ -95,61 +99,43 @@ const Dashboard = () => {
                     <Container fluid className="w-100 mt-2">
                         <Row>
                             <Col>
-                                <h6>Dashboard</h6>
+                                <h6>Customers</h6>
                             </Col>
                         </Row>
                     </Container>
-                    {/*Widgets*/}
-                    <Container className="w-100 mt-2">
+                    {/*Customer Add Button*/}
+                    <Container fluid className="w-100 mt-2">
                         <Row>
                             <Col>
-                                <Card style={{ width: '18rem' }}>
-                                <Card.Body className="bg-primary bg-gradient text-white">
-                                <Card.Title>103</Card.Title>
-                                <Card.Text>
-                                    <FontAwesomeIcon icon={faChartLine} size="2xl" /> New Loans
-                                </Card.Text>
-                                </Card.Body>
-                                </Card>
+                                <Button variant="primary" id="button-addon2" size="sm">
+                                    <FontAwesomeIcon icon={faUserPlus} /> Add
+                                </Button>
                             </Col>
+                        </Row>
+                    </Container>
+                    {/*Customer Search Bar*/}
+                    <Container fluid className="w-100 mt-2">
+                        <Row>
                             <Col>
-                                <Card style={{ width: '18rem' }}>
-                                <Card.Body className="bg-info bg-gradient text-white">
-                                <Card.Title>11</Card.Title>
-                                <Card.Text>
-                                    <FontAwesomeIcon icon={faCheckToSlot} size="2xl" /> For Verification
-                                </Card.Text>
-                                </Card.Body>
-                                </Card>
-                            </Col>
-                            <Col>
-                                <Card style={{ width: '18rem' }}>
-                                <Card.Body className="bg-success bg-gradient text-white">
-                                <Card.Title>18</Card.Title>
-                                <Card.Text>
-                                    <FontAwesomeIcon icon={faHandHoldingDollar} size="2xl" /> Collections
-                                </Card.Text>
-                                </Card.Body>
-                                </Card>
-                            </Col>
-                            <Col>
-                                <Card style={{ width: '18rem' }}>
-                                <Card.Body className="bg-warning bg-gradient text-white">
-                                <Card.Title>2</Card.Title>
-                                <Card.Text>
-                                    <FontAwesomeIcon icon={faCalendarPlus} size="2xl" /> Renewals
-                                </Card.Text>
-                                </Card.Body>
-                                </Card>
+                                <InputGroup className="mb-3" size="sm">
+                                <Form.Control
+                                    placeholder="Enter Search Text"
+                                    aria-label="Search"
+                                    aria-describedby="basic-addon2"
+                                />
+                                <Button variant="primary" id="button-addon2">
+                                    <FontAwesomeIcon icon={faMagnifyingGlass} /> Search
+                                </Button>
+                                </InputGroup>
                             </Col>
                         </Row>
                     </Container>
                     {/*Recent Customer Tables*/}
-                    <Container className="w-100 mt-5">
+                    <Container fluid className="w-100">
                         <Row>
                             <Col>
                                 <Card>
-                                <Card.Header>Recent Customers</Card.Header>
+                                <Card.Header className="bg-dark text-white">Customers</Card.Header>
                                 <Card.Body>
                                     <Table striped bordered hover size="sm">
                                         <thead>
@@ -185,51 +171,10 @@ const Dashboard = () => {
                             </Col>
                         </Row>
                     </Container>
-                    {/*Recent Loans Tables*/}
-                    <Container className="w-100 mt-5">
-                        <Row>
-                            <Col>
-                                <Card>
-                                <Card.Header>Recent Loans</Card.Header>
-                                <Card.Body>
-                                    <Table striped bordered hover size="sm">
-                                        <thead>
-                                        <tr>
-                                          <th>Loan ID</th>
-                                          <th>State</th>
-                                          <th>Amount</th>
-                                          <th>Encoded Date</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                          <td>1</td>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <td>2</td>
-                                          <td>Jacob</td>
-                                          <td>Thornton</td>
-                                          <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                          <td>3</td>
-                                          <td colSpan={2}>Larry the Bird</td>
-                                          <td>@twitter</td>
-                                        </tr>
-                                        </tbody>
-                                    </Table>
-                                </Card.Body>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </Container>
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default Dashboard;
+export default Customers;

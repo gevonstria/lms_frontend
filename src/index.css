@@ -17,3 +17,7 @@ code {
 .row-login {
   height: 100vh;
 }
+
+.list-group-item.list-group-item {
+    cursor: pointer;
+}

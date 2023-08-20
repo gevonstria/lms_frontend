@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import Customers from "./components/customers/Customers";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
         <Route index element={<App />} />
         <Route path="login" element={<Login />} />
         <Route path="dashboard" element={<Dashboard />} />
+        <Route path="customers" element={<Customers />} />
       </Routes>
     </BrowserRouter>
 );
