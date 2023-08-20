@@ -18,10 +18,6 @@ const Login = () => {
     const [login, setLogin] = useState(false);
     const [error, setError] = useState(false);
     const [error_message, setErrorMessage] = useState(false);
-    const [is_authenticated, setIsAuthenticated] = useState(false);
-
-    console.log("function head");
-    console.log(login); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -30,14 +26,17 @@ const Login = () => {
 
     useEffect(() => {
         let login_error = false;
-        console.log("USE EFFECT");
+        // Check if user is already logged in
+        if (localStorage.getItem('token') !== null) {
+            navigate("/dashboard");
+        }
+        // login state change
         if(login){
             let payload = {
                 "username": username,
                 "password": password
             };
 
-            console.log(payload);
             fetch('http://0.0.0.0:8080/api-token-auth/', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -56,7 +55,6 @@ const Login = () => {
             .then(data => {
                 localStorage.setItem('token', data['token']);
                 navigate("/dashboard");
-                setIsAuthenticated(true);
             })
             .catch(error => {
                 console.log(error);
