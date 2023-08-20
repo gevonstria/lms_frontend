@@ -27,15 +27,59 @@ import { faHandHoldingDollar } from '@fortawesome/free-solid-svg-icons';
 import { faCalendarPlus } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
-const Customers = () => {
+const CustomerAdd = () => {
 
     const navigate = useNavigate();
+
+    // Personal Details
+    const [firstname, setFirstName] = useState("");
+    const [middlename, setMiddleName] = useState("");
+    const [lastname, setLastName] = useState("");
+    const [address_street, setAddressStreet] = useState("");
+    const [address_municipality, setAddressMunicipality] = useState("");
+    const [province, setProvince] = useState("");
+    const [zip_code, setZipCode] = useState("");
+    const [birthday, setBirthday] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone_number, setPhoneNumber] = useState("");
+    const [gender, setGender] = useState("");
+    const [civil_status, setCivilStatus] = useState("");
+    // Other Details
+    const [sss_id, setSSSId] = useState("");
+    const [tin_id, setTinId] = useState("");
+    const [company, setCompany] = useState("");
+    const [job_position, setJobPosition] = useState("");
 
     const handleLogout = (e) => {
         console.log("Button Click");
         localStorage.removeItem('token');
         navigate("/login");
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let form_data = new FormData();
+        // Personal Details
+        form_data.append("firstname", firstname);
+        form_data.append("middlename", middlename);
+        form_data.append("lastname", lastname);
+        form_data.append("address_street", address_street);
+        form_data.append("address_municipality", address_municipality);
+        form_data.append("province", province);
+        form_data.append("zip_code", zip_code);
+        form_data.append("birthday", birthday);
+        form_data.append("email", email);
+        form_data.append("phone_number", phone_number);
+        form_data.append("gender", gender);
+        form_data.append("civil_status", civil_status);
+        // Other Details
+        form_data.append("sss_id", sss_id);
+        form_data.append("tin_id", tin_id);
+        form_data.append("company", company);
+        form_data.append("job_position", job_position);
+
     };
 
     return (
@@ -106,6 +150,7 @@ const Customers = () => {
                         </Row>
                     </Container>
                     {/*Forms*/}
+                    <Form onSubmit={ handleSubmit }>
                     <Container fluid className="w-100 mt-2">
                         <Row>
                             <Col>
@@ -117,19 +162,19 @@ const Customers = () => {
                                                 <Col>
                                                     <Form.Group className="mb-3">
                                                         <Form.Label>First Name</Form.Label>
-                                                        <Form.Control type="text" placeholder="Enter First Name" size="sm"/>
+                                                        <Form.Control type="text" placeholder="Enter First Name" size="sm" value={ firstname } onChange={(e) => setFirstName(e.target.value)} required/>
                                                     </Form.Group>
                                                 </Col>
                                                 <Col>
                                                     <Form.Group className="mb-3">
                                                         <Form.Label>Middle Name</Form.Label>
-                                                        <Form.Control type="text" placeholder="Enter Middle Name" size="sm"/>
+                                                        <Form.Control type="text" placeholder="Enter Middle Name" size="sm" value={ middlename } onChange={(e) => setMiddleName(e.target.value)} required/>
                                                     </Form.Group>
                                                 </Col>
                                                 <Col>
                                                     <Form.Group className="mb-3">
                                                         <Form.Label>Last Name</Form.Label>
-                                                        <Form.Control type="text" placeholder="Enter Last Name" size="sm"/>
+                                                        <Form.Control type="text" placeholder="Enter Last Name" size="sm" value={ lastname } onChange={(e) => setLastName(e.target.value)} required/>
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
@@ -140,16 +185,16 @@ const Customers = () => {
                                             </Row>
                                             <Row>
                                                 <Col>
-                                                    <Form.Control type="text" placeholder="Street" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Street" size="sm" value={ address_street } onChange={(e) => setAddressStreet(e.target.value)} required/>
                                                 </Col>
                                                 <Col>
-                                                    <Form.Control type="text" placeholder="City Municipality" size="sm"/>
+                                                    <Form.Control type="text" placeholder="City Municipality" size="sm" value={ address_municipality } onChange={(e) => setAddressMunicipality(e.target.value)} required/>
                                                 </Col>
                                             </Row>
                                             <Row className="mt-1">
                                                 <Col>
                                                     <Form.Label>Province</Form.Label>
-                                                    <Form.Select aria-label="Provinces" size="sm">
+                                                    <Form.Select aria-label="Provinces" size="sm" value={ province } onChange={(e) => setProvince(e.target.value)} required>
                                                         <option>Provinces</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
@@ -158,33 +203,33 @@ const Customers = () => {
                                                 </Col>
                                                 <Col>
                                                     <Form.Label>ZIP Code</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter ZIP" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Enter ZIP" size="sm" value={ zip_code } onChange={(e) => setZipCode(e.target.value)} required/>
                                                 </Col>
 
                                             </Row>
                                             <Row className="mt-1">
                                                 <Col>
                                                     <Form.Label>Birthday</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter Birthday" size="sm"/>
+                                                    <Form.Control type="date" placeholder="Enter Birthday" size="sm" value={ birthday } onChange={(e) => setBirthday(e.target.value)} required/>
                                                 </Col>
                                                 <Col>
                                                     <Form.Label>Email</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter Email" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Enter Email" size="sm" value={ email } onChange={(e) => setEmail(e.target.value)} required/>
                                                 </Col>
                                                 <Col>
                                                     <Form.Label>Phone Number</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter Phone Number" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Enter Phone Number" size="sm" value={ phone_number } onChange={(e) => setPhoneNumber(e.target.value)} required/>
                                                 </Col>
                                                 <Col>
                                                     <Form.Label>Gender</Form.Label>
-                                                    <Form.Select aria-label="Gender" size="sm">
+                                                    <Form.Select aria-label="Gender" size="sm" value={ gender } onChange={(e) => setGender(e.target.value)} required>
                                                         <option value="1">Male</option>
                                                         <option value="2">Female</option>
                                                     </Form.Select>
                                                 </Col>
                                                 <Col>
                                                     <Form.Label>Civil Status</Form.Label>
-                                                    <Form.Select aria-label="Civil Status" size="sm">
+                                                    <Form.Select aria-label="Civil Status" size="sm" value={ civil_status } onChange={(e) => setCivilStatus(e.target.value)} required>
                                                         <option value="1">Single</option>
                                                         <option value="2">Married</option>
                                                     </Form.Select>
@@ -205,13 +250,13 @@ const Customers = () => {
                                             <Col>
                                                 <Form.Group className="mb-3">
                                                     <Form.Label>SSS ID</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter SSS ID" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Enter SSS ID" size="sm" value={ sss_id } onChange={(e) => setSSSId(e.target.value)} required/>
                                                 </Form.Group>
                                             </Col>
                                             <Col>
                                                 <Form.Group className="mb-3">
                                                     <Form.Label>TIN ID</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter TIN ID" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Enter TIN ID" size="sm" value={ tin_id } onChange={(e) => setTinId(e.target.value)} required/>
                                                 </Form.Group>
                                             </Col>
                                         </Row>
@@ -219,14 +264,30 @@ const Customers = () => {
                                             <Col>
                                                 <Form.Group className="mb-3">
                                                     <Form.Label>Company</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter Company" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Enter Company" size="sm" value={ company } onChange={(e) => setCompany(e.target.value)} required/>
                                                 </Form.Group>
                                             </Col>
                                             <Col>
                                                 <Form.Group className="mb-3">
                                                     <Form.Label>Job Position</Form.Label>
-                                                    <Form.Control type="text" placeholder="Enter Job Position" size="sm"/>
+                                                    <Form.Control type="text" placeholder="Enter Job Position" size="sm" value={ job_position } onChange={(e) => setJobPosition(e.target.value)} required/>
                                                 </Form.Group>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <Form.Label>Home Ownership</Form.Label>
+                                                    <Form.Select aria-label="Civil Status" size="sm" value={ civil_status } onChange={(e) => setCivilStatus(e.target.value)} required>
+                                                        <option value="1">Single</option>
+                                                        <option value="2">Married</option>
+                                                    </Form.Select>
+                                            </Col>
+                                            <Col>
+                                                <Form.Label>Living Since</Form.Label>
+                                                    <Form.Select aria-label="Civil Status" size="sm" value={ civil_status } onChange={(e) => setCivilStatus(e.target.value)} required>
+                                                        <option value="1">Single</option>
+                                                        <option value="2">Married</option>
+                                                    </Form.Select>
                                             </Col>
                                         </Row>
                                     </Container>
@@ -234,11 +295,19 @@ const Customers = () => {
                                 </Card>
                             </Col>
                         </Row>
+                        <Row className="mt-1">
+                            <Col style={{display:'flex', justifyContent:'right'}}>
+                                <Button variant="success" size="sm" type="submit">
+                                    <FontAwesomeIcon icon={faFloppyDisk} /> Save
+                                </Button>
+                            </Col>
+                        </Row>
                     </Container>
+                    </Form>
                 </Col>
             </Row>
         </Container>
     )
 }
 
-export default Customers;
+export default CustomerAdd;

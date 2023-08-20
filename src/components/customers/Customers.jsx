@@ -37,7 +37,7 @@ const Customers = () => {
         localStorage.removeItem('token');
         navigate("/login");
     };
-
+    
     return (
         <Container fluid>
             <Row>

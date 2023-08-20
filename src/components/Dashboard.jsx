@@ -149,7 +149,7 @@ const Dashboard = () => {
                         <Row>
                             <Col>
                                 <Card>
-                                <Card.Header>Recent Customers</Card.Header>
+                                <Card.Header className="bg-dark text-white"><FontAwesomeIcon icon={faUsers} /> Recent Customers</Card.Header>
                                 <Card.Body>
                                     <Table striped bordered hover size="sm">
                                         <thead>
@@ -190,7 +190,7 @@ const Dashboard = () => {
                         <Row>
                             <Col>
                                 <Card>
-                                <Card.Header>Recent Loans</Card.Header>
+                                <Card.Header className="bg-dark text-white"><FontAwesomeIcon icon={faMoneyBillTransfer} /> Recent Loans</Card.Header>
                                 <Card.Body>
                                     <Table striped bordered hover size="sm">
                                         <thead>
