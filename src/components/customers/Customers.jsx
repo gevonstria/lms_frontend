@@ -107,7 +107,7 @@ const Customers = () => {
                     <Container fluid className="w-100 mt-2">
                         <Row>
                             <Col>
-                                <Button variant="primary" id="button-addon2" size="sm">
+                                <Button variant="primary" id="button-addon2" size="sm" onClick={ () => navigate("/customers/add") }>
                                     <FontAwesomeIcon icon={faUserPlus} /> Add
                                 </Button>
                             </Col>
