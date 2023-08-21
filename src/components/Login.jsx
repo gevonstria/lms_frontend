@@ -30,14 +30,16 @@ const Login = () => {
         if (localStorage.getItem('token') !== null) {
             navigate("/dashboard");
         }
+        console.log(process.env.REACT_APP_API_URL);
         // login state change
         if(login){
+
             let payload = {
                 "username": username,
                 "password": password
             };
 
-            fetch('http://0.0.0.0:8080/api-token-auth/', {
+            fetch(process.env.REACT_APP_API_URL +'/api-token-auth/', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
